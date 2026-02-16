@@ -16,7 +16,7 @@ test.describe.serial('Authentication Tests', () => {
     test('login to SauceLabs', async ({ }) => {
 
         await test.step('Login to SauceLabs with valid credentials', async () => {
-            await POM.loginFunctions.loginToSauceLabs();
+            await POM.loginFunctions.loginToSauceabs();
         });
 
         await test.step('Logout from SauceLabs', async () => {
