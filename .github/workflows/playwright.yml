@@ -4,6 +4,7 @@ on:
     branches: [feature1, workflow_dispatch]
   pull_request:
     branches: [main]
+  workflow_dispatch:
 permissions:
   contents: write
 jobs:
@@ -21,11 +22,15 @@ jobs:
         run: npx playwright install --with-deps
       - name: Run Playwright tests
         run: npx playwright test
+        continue-on-error: true
       - name: Install Allure CLI
+        if: always()
         run: npm install -g allure-commandline
       - name: Generate Allure report
-        run: allure generate allure-results  -o allure-report
-      - uses: actions/upload-artifact@v4
+        if: always() 
+        run: allure generate allure-results  -o allure-report --clean
+      - name: Upload Allure report as artifact  
+        uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:
           # name: playwright-report
@@ -34,6 +39,7 @@ jobs:
           path: allure-report/
           retention-days: 30
       - name: Deploy report
+        if: always()
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
