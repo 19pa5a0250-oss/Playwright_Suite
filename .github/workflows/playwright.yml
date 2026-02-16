@@ -31,3 +31,8 @@ jobs:
           name: allure-report
           path: allure-report/
           retention-days: 30
+      - name: Deploy report
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./allure-report
