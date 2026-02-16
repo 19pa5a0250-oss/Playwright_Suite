@@ -1,2 +1,2 @@
 "DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
-"","2261","login to SauceLabs","chromium","2026-02-16","passed","2026-02-16","Authentication Tests","specs/authentication/validUser.spec.js","",""
+"","1222","login to SauceLabs","chromium","2026-02-16","failed","2026-02-16","Authentication Tests","specs/authentication/validUser.spec.js","",""
