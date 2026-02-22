@@ -3,7 +3,7 @@ import { POManager } from '../../pageObjects/POMangaer.js';
 
 test.describe.serial('Authentication Tests', () => {
 
-
+    
     /** @type {import('../../pageObjects/POMangaer.js').POManager} */
     let POM;
 
