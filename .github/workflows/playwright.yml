@@ -27,9 +27,9 @@
 #         if: always()
 #         run: npm install -g allure-commandline
 #       - name: Generate Allure report
-#         if: always() 
+#         if: always()
 #         run: allure generate allure-results  -o allure-report --clean
-#       - name: Upload Allure report as artifact  
+#       - name: Upload Allure report as artifact
 #         uses: actions/upload-artifact@v4
 #         if: ${{ !cancelled() }}
 #         with:
