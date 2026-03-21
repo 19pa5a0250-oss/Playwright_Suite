@@ -26,6 +26,7 @@ export default defineConfig({
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: [
     ['html', { open: 'never' }],
+    ['dot'],
     ['allure-playwright', { outputFolder: 'allure-results' }]
   ],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
@@ -45,7 +46,7 @@ export default defineConfig({
       name: 'chromium',
       use: {
         browserName: 'chromium',
-        headless: false,
+        headless: true,
         viewport: null,
         launchOptions: {
           args: ['--start-maximized'],
