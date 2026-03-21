@@ -16,4 +16,8 @@ export class LoginPage {
     get loginButton(){
         return this.page.locator('input[data-test="login-button"]');
     }
+
+    get errorMessage(){
+        return this.page.locator('h3[data-test="error"]');
+    }
 }

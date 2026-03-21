@@ -15,6 +15,10 @@ const envConfig = {
       username: 'standard_user',
       password: 'secret_sauce',
     },
+    invalidCredentials: {
+      username: 'locked_out_user',
+      password: 'secret_sauce',
+    },
   },
   prod: {
     baseURL: 'https://opensource-demo.orangehrmlive.com',
@@ -22,6 +26,7 @@ const envConfig = {
       username: 'Admin',
       password: 'admin123',
     },
+
   },
 };
 
