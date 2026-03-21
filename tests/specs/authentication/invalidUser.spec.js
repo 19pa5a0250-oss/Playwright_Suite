@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { POManager } from '../../pageObjects/POMangaer.js';
+import { LoginTypes } from '../../enums/login.js';
 
 test.describe.serial('Authentication Tests', () => {
 
@@ -16,11 +17,11 @@ test.describe.serial('Authentication Tests', () => {
     test('InValid User', async ({ }) => {
 
         await test.step('Login to SauceLabs with Invalid credentials', async () => {
-            await POM.loginFunctions.loginToSauceLabs();
+            await POM.loginFunctions.loginToSauceLabs(LoginTypes.invalidCred);
         });
 
-        await test.step('Logout from SauceLabs', async () => {
-            await POM.loginFunctions.logoutFromSauceLabs();
+        await test.step('Verify error message', async () => {
+            await POM.loginFunctions.verifyInvalidCredentialErrorMessage();
         });
 
     });

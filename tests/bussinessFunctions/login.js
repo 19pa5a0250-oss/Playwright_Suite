@@ -13,10 +13,18 @@ export class LoginFunctions {
         this.menuBar = new MenuBar(page);
     }
 
-    async loginToSauceLabs() {
+    async loginToSauceLabs(credentials) {
 
-        await this.loginPage.usernameInput.fill('standard_user');
-        await this.loginPage.userPasswordInput.fill('secret_sauce');
+        await this.loginPage.usernameInput.fill(credentials.username);
+        await this.loginPage.userPasswordInput.fill(credentials.password);
+        await this.loginPage.loginButton.click();
+
+    }
+
+     async loginToSauceLabsVerifyHeaderElements(credentials) {
+
+        await this.loginPage.usernameInput.fill(credentials.username);
+        await this.loginPage.userPasswordInput.fill(credentials.password);
         await this.loginPage.loginButton.click();
         await this.header.verifyHeaderElements();
 
@@ -28,5 +36,10 @@ export class LoginFunctions {
         await this.header.menuButton.click();
         await this.menuBar.logoutButton.click();
         await expect(this.loginPage.loginButton).toBeVisible({ timeout: 5000 });
+    }
+
+    async verifyInvalidCredentialErrorMessage() {
+        await expect(this.loginPage.errorMessage).toBeVisible({ timeout: 3000 });
+        await expect(this.loginPage.errorMessage).toHaveText('Epic sadface: Username and password do not match any user in this service');
     }
 }

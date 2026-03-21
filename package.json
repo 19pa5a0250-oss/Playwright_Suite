@@ -3,7 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "ValidUserTest": "npx cross-env ENV=uat npx playwright test tests/specs/authentication/validUser.spec.js ",
+    "InvalidUserTest": "npx cross-env ENV=uat npx playwright test tests/specs/authentication/invalidUser.spec.js"
+
+
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
