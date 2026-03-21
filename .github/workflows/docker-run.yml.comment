@@ -1,0 +1,46 @@
+name: Playwright Tests
+
+on:
+    push:
+        branches:
+            - feature1
+    workflow_dispatch:
+
+permissions:
+    contents: write
+
+jobs:
+    test:
+        runs-on: ubuntu-latest
+        container:
+            image: surya212299/playwright_demo:latest
+            credentials:
+                username: ${{ secrets.DOCKER_USERNAME }}
+                password: ${{ secrets.DOCKER_PASSWORD }}
+
+        steps:
+            - name: Checkout repo
+              uses: actions/checkout@v4
+
+            - name: Verify container
+              run: echo "Running inside Docker container"
+
+            - name: Install Allure CLI
+              run: npm install -g allure-commandline
+
+            - name: Generate Allure report
+              if: always()
+              run: allure generate allure-results -o allure-report --clean
+
+            - name: Upload Allure report
+              uses: actions/upload-artifact@v4
+              with:
+                  name: allure-report
+                  path: allure-report/
+
+            - name: Deploy Allure report to GitHub Pages
+              if: always()
+              uses: peaceiris/actions-gh-pages@v4
+              with:
+                  github_token: ${{ secrets.GITHUB_TOKEN }}
+                  publish_dir: ./allure-report
